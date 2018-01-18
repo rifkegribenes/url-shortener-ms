@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/rifkegribenes/url-shortener-ms/issues"
   },
-  "homepage": "https://github.com/rifkegribenes/url-shortener-ms#readme"
+  "homepage": "https://github.com/rifkegribenes/url-shortener-ms#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0",
+    "pug": "^2.0.0-rc.4"
+  }
 }

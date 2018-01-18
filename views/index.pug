@@ -4,25 +4,25 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    title #{title} - Timestamp Microservice
+    title #{title}
     link(id='favicon', rel='icon', type='image/x-icon', href='https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico?1469823370860')
     link(href='https://fonts.googleapis.com/css?family=Titillium+Web:300|700', rel='stylesheet')
     link(href='/style.css', rel='stylesheet')
-    script(src='/script.js') 
+    script(src='/script.js')
 
   body
     header(class='head')
-      h1(class='header') Timestamp Microservice
-      h2(class='subhead') FreeCodeCamp Back End Certification API project #1
-      
+      h1(class='header') URL Shortener Microservice
+      h2(class='subhead') FreeCodeCamp Back End Certification API project #3
+
     main(class='container')
       div(class='row')
         div(class='card')
           h3(class='card__title') User stories:
           ul
-            li I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)
-            li If it does, it returns both the Unix timestamp and the natural language form of that date.
-            li If it does not contain a date or Unix timestamp, it returns null for those properties.
+            li I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
+            li If I pass an invalid URL that doesn't follow the valid http://www.example.com format, the JSON response will contain an error instead.
+            li When I visit that shortened URL, it will redirect me to my original link.
       div(class='row')
         div(class='col col-1')
           div(class='card')
@@ -34,7 +34,11 @@ html
           div(class='card')
             h3(class='card__title') Example Output
             pre { unix: 1450117800, natural: "December 15, 2015" }
-            
+      div(class='row')
+        div(class='card')
+          input(class='input' id='urlInput' placeholder='URL to shorten')
+          a(class='card__action' id='shortenerLink') Get Short URL
+
     footer(class='foot')
       div(class='icon__wrap')
         a(class='github' href='https://github.com/rifkegribenes/timestamp-ms' target="_blank")

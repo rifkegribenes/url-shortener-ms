@@ -7,9 +7,9 @@ body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
-  background: #FC466B;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #11998e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container{
@@ -75,14 +75,15 @@ header {
 
 .card__action {
   text-decoration: none;
-  background: #FC466B;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #11998e;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   padding: 5px 15px;
   border-radius: 4px;
   color: white;
   font-weight: 700;
   border-top: 10px;
+  cursor: pointer;
 }
 
 .card__action:hover {
