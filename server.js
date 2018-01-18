@@ -15,16 +15,18 @@ app.use(cors());
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shorturls');
 
 // create DB entry
-app.get('/new/:urlToShorten(*)', (req, res, next) => {
-	const { urlToShorten } = req.params;
+app.get('/new/:originalUrl(*)', (req, res, next) => {
+	const { originalUrl } = req.params;
+
+	// regex to test for valid url
 	const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
-	if (regex.test(urlToShorten) === true) {
-		const short = Math.floor(Math.random()*100000).toString();
+	if (regex.test(originalUrl) === true) {
+		const shorterUrl = Math.floor(Math.random()*100000).toString();
 		const data = new shortUrl(
 			{
-				originalUrl: urlToShorten,
-				shorterUrl: short
+				originalUrl,
+				shorterUrl
 			});
 		data.save(err => {
 			if (err) {
@@ -34,7 +36,7 @@ app.get('/new/:urlToShorten(*)', (req, res, next) => {
 		return res.json(data);
 	} else {
 		const data = new shortUrl({
-			originalUrl: urlToShorten,
+			originalUrl,
 			shorterUrl: 'Invalid URL'
 		})
 		return res.json(data);
@@ -42,12 +44,27 @@ app.get('/new/:urlToShorten(*)', (req, res, next) => {
 	//
 });
 
-//
-
-// const api = require('./routes/api');
-
 app.use(express.static('public'));
-// app.use('/', api);
+
+// Query db and forward to original URL
+
+app.get('/:shorterUrl', (req, res, next) => {
+	const { shorterUrl } = req.params;
+	// check to see if it's a number to filter out requests for other files
+	shortUrl.findOne({'shorterUrl': shorterUrl}, (err, data) => {
+		if (err) {
+			return res.send('Error reading database');
+		}
+		const regex = new RegExp("^(http|https)://", "i");
+		const { originalUrl } = data;
+		if (regex.test(originalUrl)) {
+			res.redirect(301, originalUrl);
+		} else {
+			res.redirect(301, `http://${originalUrl}`);
+		}
+	})
+});
+
 
 app.set('view engine', 'pug');
 

@@ -18,4 +18,4 @@
 
 #### Screenshot:
 
-![url-shortener-micoservice-screenshot](http://#)
+![url-shortener-microservice-screenshot](http://#)
