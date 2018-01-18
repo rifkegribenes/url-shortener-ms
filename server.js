@@ -6,9 +6,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const shortUrl = require('./models/shortUrl');
 
 app.use(bodyParser.json());
 app.use(cors());
+
+// connect to DB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shorturls');
 
 // create DB entry
 app.get('/new/:urlToShorten(*)', (req, res, next) => {
