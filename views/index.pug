@@ -1,0 +1,41 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title #{title} - Timestamp Microservice
+    link(id='favicon', rel='icon', type='image/x-icon', href='https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico?1469823370860')
+    link(href='https://fonts.googleapis.com/css?family=Titillium+Web:300|700', rel='stylesheet')
+    link(href='/style.css', rel='stylesheet')
+    script(src='/script.js') 
+
+  body
+    header(class='head')
+      h1(class='header') Timestamp Microservice
+      h2(class='subhead') FreeCodeCamp Back End Certification API project #1
+      
+    main(class='container')
+      div(class='row')
+        div(class='card')
+          h3(class='card__title') User stories:
+          ul
+            li I can pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016)
+            li If it does, it returns both the Unix timestamp and the natural language form of that date.
+            li If it does not contain a date or Unix timestamp, it returns null for those properties.
+      div(class='row')
+        div(class='col col-1')
+          div(class='card')
+            h3(class='card__title') Example Usage
+            div(id='natural-link' class='card__url')
+            div(id='unix-link' class='card__url')
+            div(id='today' class='card__url')
+        div(class='col col-2')
+          div(class='card')
+            h3(class='card__title') Example Output
+            pre { unix: 1450117800, natural: "December 15, 2015" }
+            
+    footer(class='foot')
+      div(class='icon__wrap')
+        a(class='github' href='https://github.com/rifkegribenes/timestamp-ms' target="_blank")
+          img(class='github' src='https://cdn.glitch.com/22a70955-ef8c-44b6-9fd7-5377da7be776%2Ficon-github.png?1516058791588' alt='view code on github')

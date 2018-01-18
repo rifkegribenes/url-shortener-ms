@@ -1,0 +1,117 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Titillium Web', helvetica, arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #FC466B;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.container{
+  width: 100%;
+	max-width: 1200px;
+  margin: 25px auto;
+}
+
+header {
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+.header, .subhead {
+  font-weight: 300;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.col-1 {
+  min-width: 60%;
+}
+
+.col-2 {
+  min-width: 38%;
+}
+
+@media (max-width: 600px) {
+  .col, .col-1, .col-2 {
+    width: 100%;
+  }
+}
+
+.card {
+  padding: 20px;
+  line-height: 2;
+  border: 1px solid lightgray;
+  background: white;
+  border-radius: 4px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  width: 100%;
+  height: 100%;
+}
+
+.card__title {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.card__url {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card__action {
+  text-decoration: none;
+  background: #FC466B;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #3F5EFB, #FC466B);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #3F5EFB, #FC466B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 5px 15px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 700;
+  border-top: 10px;
+}
+
+.card__action:hover {
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
+}
+
+pre{
+	margin: 5px;
+}
+
+
+footer {
+  position: absolute;
+  bottom: 72px;
+  padding-top: 25px;
+  display: flex;
+  justfy-content: center;
+  width: 100%;
+  height: 72px;
+}
+
+.icon__wrap {
+  width: 32px;
+  margin: auto;
+}
+
+.github {
+  width: 32px;
+  height: 32px;
+}
