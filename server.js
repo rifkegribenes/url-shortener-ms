@@ -13,7 +13,7 @@ app.use(cors());
 // create DB entry
 app.get('/new/:urlToShorten(*)', (req, res, next) => {
 	const { urlToShorten } = req.params;
-	console.log(urlToShorten);
+	return res.json({urlToShorten});
 });
 
 //
