@@ -1,0 +1,20 @@
+{
+  "name": "url-shortener-ms",
+  "version": "1.0.0",
+  "description": "URL Shortener Microservice (freeCodeCamp Back End API Project #3)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rifkegribenes/url-shortener-ms.git"
+  },
+  "author": "Sarah Schneider",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rifkegribenes/url-shortener-ms/issues"
+  },
+  "homepage": "https://github.com/rifkegribenes/url-shortener-ms#readme"
+}
