@@ -17,7 +17,29 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shorturls');
 // create DB entry
 app.get('/new/:urlToShorten(*)', (req, res, next) => {
 	const { urlToShorten } = req.params;
-	return res.json({urlToShorten});
+	const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
+	if (regex.test(urlToShorten) === true) {
+		const short = Math.floor(Math.random()*100000).toString();
+		const data = new shortUrl(
+			{
+				originalUrl: urlToShorten,
+				shorterUrl: short
+			});
+		data.save(err => {
+			if (err) {
+				return res.send('Error saving to database');
+			}
+		});
+		return res.json(data);
+	} else {
+		const data = new shortUrl({
+			originalUrl: urlToShorten,
+			shorterUrl: 'Invalid URL'
+		})
+		return res.json(data);
+	}
+	//
 });
 
 //
