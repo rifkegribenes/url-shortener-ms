@@ -12,13 +12,15 @@ const shortUrl = require('./models/shortUrl');
 app.use(bodyParser.json());
 app.use(cors());
 
+const MONGODB_URI=`mongodb://${process.env.USER}:${process.env.PASS}@${process.env.HOST}:${process.env.DB_PORT}/${process.env.DB}`;
+
 // connect to DB
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(MONGODB_URI);
 
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // create DB entry
 app.get('/new/:originalUrl(*)', (req, res, next) => {

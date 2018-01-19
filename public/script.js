@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlInput = document.getElementById('urlInput');
   const shortenButton = document.getElementById('shortenButton');
   const shorten_actions = document.getElementById('shorten_actions');
-  let shortenerLink;
+  let apiLink;
 
   const copyIt = () => {
     const selectedText = window.getSelection().toString();
