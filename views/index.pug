@@ -27,8 +27,13 @@ html
       div(class='row')
         div(class='card')
           fieldset
-            input(class='input' id='urlInput' placeholder='URL to shorten')
-            a(class='card__action' id='shortenerLink') Get Short URL
+            input(class='input' id='urlInput' placeholder='Paste a link to shorten it')
+            a(class='card__action' id='shortenButton') shorten
+          div(id='shorten_actions')
+            span(class='info') Paste another long URL to shorten it
+            a(href='#' id='clear_active_shorten' class='close' title='Clear shorten box and preview') &times;
+            input(class='copy-input' readonly='')
+            a(id='copy_shortlink' class='card__action' href='') Copy
 
     footer(class='foot')
       div(class='icon__wrap')

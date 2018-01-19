@@ -75,9 +75,9 @@ header {
 
 .card__action {
   text-decoration: none;
-  background: #11998e;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to left, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to left, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: #38ef7d;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #11998e, #38ef7d);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #11998e, #38ef7d); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   color: white;
   font-weight: 700;
   cursor: pointer;
@@ -101,6 +101,8 @@ header {
   box-shadow: 0 0 0 1px #11998e;
   text-rendering: optimizelegibility;
   border: 0 !important;
+  font-weight: 700;
+  letter-spacing: 1.2px;
 }
 
 .card__action:hover {
@@ -136,6 +138,13 @@ pre{
   -webkit-appearance: none;
 }
 
+.selected {
+  color: white !important;
+}
+
+.input::-moz-selection { background: #11998e; }
+.input::selection { background: #11998e; }
+
 
 footer {
   position: absolute;
@@ -155,4 +164,64 @@ footer {
 .github {
   width: 32px;
   height: 32px;
+}
+
+.close {
+  color: #11998e;
+  text-decoration: none;
+  position: absolute;
+  top: 4px;
+  right: 140px;
+  font-size: 1.5em;
+}
+
+.close:hover {
+  color: #38ef7d;
+}
+
+.visible {
+  display: block !important;
+}
+
+#shorten_actions {
+  display: none;
+  position: relative;
+  top: -60px;
+  left: -2px;
+}
+
+#shortened_info, #shortened_url, .info {
+  display: none;
+}
+
+.info {
+  position: absolute;
+  top: 20px;
+  right: 160px;
+}
+
+.copy-input {
+  position: absolute;
+  left: -10000px;
+}
+
+#copy_shortlink {
+  height: 60px;
+  padding: 20px 43px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  border-radius: 0 3px 3px 0;
+  font-size: 13.2px;
+  line-height: 24px;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 0 0 1px #11998e;
+  text-rendering: optimizelegibility;
+  border: 0 !important;
 }
