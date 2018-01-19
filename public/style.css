@@ -239,3 +239,27 @@ footer {
 .success {
   color: lime;
 }
+
+@media (max-width: 480px) {
+  #copy_shortlink, #shortenButton, .card__action {
+    position: static;
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  #shorten_actions {
+    position: relative;
+    top: 0px;
+    left: 0px;
+  }
+
+/*  #copy_shortlink {
+    margin-top: 80px;*/
+/*  }*/
+
+  .close {
+    top: -63px;
+    right: 0px;
+  }
+}
