@@ -36,9 +36,11 @@ app.get('/new/:originalUrl(*)', (req, res, next) => {
 				originalUrl,
 				shorterUrl
 			});
+    console.log(data);
 		data.save(err => {
 			if (err) {
-				return res.send('Error saving to database');
+				console.log('Error saving to database');
+        return;
 			}
 		});
 		return res.json(data);
