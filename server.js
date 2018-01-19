@@ -1,39 +1,80 @@
 // server.js
-// where your node app starts
 
 // init project
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const shortid = require('shortid');
+const mongoose = require('mongoose');
+const shortUrl = require('./models/shortUrl');
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+app.use(bodyParser.json());
+app.use(cors());
 
-// http://expressjs.com/en/starter/static-files.html
+// connect to DB
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shorturls');
+
+// create DB entry
+app.get('/new/:originalUrl(*)', (req, res, next) => {
+	const { originalUrl } = req.params;
+
+	// regex to test for valid url
+	const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
+	if (regex.test(originalUrl) === true) {
+		const shorterUrl = shortid.generate();
+		const data = new shortUrl(
+			{
+				originalUrl,
+				shorterUrl
+			});
+		data.save(err => {
+			if (err) {
+				return res.send('Error saving to database');
+			}
+		});
+		return res.json(data);
+	} else {
+		const data = new shortUrl({
+			originalUrl,
+			shorterUrl: 'Invalid URL'
+		})
+		return res.json(data);
+	}
+});
+
 app.use(express.static('public'));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+// Query db and forward to original URL
+app.get('/:shorterUrl', (req, res, next) => {
+	const { shorterUrl } = req.params;
+	shortUrl.findOne({'shorterUrl': shorterUrl}, (err, data) => {
+		if (err) {
+			return res.send('Error reading database');
+		}
+		// check if we need to add http to the saved url
+		const regex = new RegExp("^(http|https)://", "i");
+		const { originalUrl } = data;
+		if (regex.test(originalUrl)) {
+			res.redirect(301, originalUrl);
+		} else {
+			res.redirect(301, `http://${originalUrl}`);
+		}
+	})
 });
 
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
+
+app.set('view engine', 'pug');
+
+app.get('*', (req, res) => {
+  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
+  res.render('index.pug', {
+    fullUrl: fullUrl,
+    title: 'URL Shortener Microservice'
+  });
 });
 
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
-});
 
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
-
-// listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server listening on localhost:${port}`));

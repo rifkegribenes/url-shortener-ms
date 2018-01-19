@@ -1,28 +1,28 @@
 {
-  "//1": "describes your app and its dependencies",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "//3": "updating this file will download and update your packages",
-
-  "name": "my-glitch-app",
-  "version": "0.0.1",
-  "description": "What am I about?",
+  "name": "url-shortener-ms",
+  "version": "1.0.0",
+  "description": "URL Shortener Microservice (freeCodeCamp Back End API Project #3)",
   "main": "server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "dependencies": {
-    "express": "^4.16.2"
-  },
-  "engines": {
-    "node": "8.x"
-  },
   "repository": {
-    "url": "https://glitch.com/edit/#!/welcome-project"
+    "type": "git",
+    "url": "git+https://github.com/rifkegribenes/url-shortener-ms.git"
   },
+  "author": "Sarah Schneider",
   "license": "MIT",
-  "keywords": [
-    "node",
-    "glitch",
-    "express"
-  ]
+  "bugs": {
+    "url": "https://github.com/rifkegribenes/url-shortener-ms/issues"
+  },
+  "homepage": "https://github.com/rifkegribenes/url-shortener-ms#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.0",
+    "pug": "^2.0.0-rc.4",
+    "shortid": "^2.2.8"
+  }
 }
