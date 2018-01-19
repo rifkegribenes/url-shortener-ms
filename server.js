@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const shortid = require('shortid');
 const mongoose = require('mongoose');
 const shortUrl = require('./models/shortUrl');
 
@@ -22,7 +23,7 @@ app.get('/new/:originalUrl(*)', (req, res, next) => {
 	const regex = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
 
 	if (regex.test(originalUrl) === true) {
-		const shorterUrl = Math.floor(Math.random()*100000).toString();
+		const shorterUrl = shortid.generate();
 		const data = new shortUrl(
 			{
 				originalUrl,
@@ -41,20 +42,18 @@ app.get('/new/:originalUrl(*)', (req, res, next) => {
 		})
 		return res.json(data);
 	}
-	//
 });
 
 app.use(express.static('public'));
 
 // Query db and forward to original URL
-
 app.get('/:shorterUrl', (req, res, next) => {
 	const { shorterUrl } = req.params;
-	// check to see if it's a number to filter out requests for other files
 	shortUrl.findOne({'shorterUrl': shorterUrl}, (err, data) => {
 		if (err) {
 			return res.send('Error reading database');
 		}
+		// check if we need to add http to the saved url
 		const regex = new RegExp("^(http|https)://", "i");
 		const { originalUrl } = data;
 		if (regex.test(originalUrl)) {
@@ -69,7 +68,7 @@ app.get('/:shorterUrl', (req, res, next) => {
 app.set('view engine', 'pug');
 
 app.get('*', (req, res) => {
-  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
   res.render('index.pug', {
     fullUrl: fullUrl,
     title: 'URL Shortener Microservice'
