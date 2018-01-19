@@ -13,7 +13,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // connect to DB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/shorturls');
+mongoose.connect(process.env.MONGODB_URI);
+
+mongoose.Promise = global.Promise;
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // create DB entry
 app.get('/new/:originalUrl(*)', (req, res, next) => {
