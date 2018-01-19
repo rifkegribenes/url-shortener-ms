@@ -147,8 +147,6 @@ pre{
 
 
 footer {
-  position: absolute;
-  bottom: 72px;
   padding-top: 25px;
   display: flex;
   justfy-content: center;
@@ -170,9 +168,13 @@ footer {
   color: #11998e;
   text-decoration: none;
   position: absolute;
-  top: 4px;
+  top: 13px;
   right: 140px;
   font-size: 1.5em;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
 }
 
 .close:hover {
@@ -224,4 +226,16 @@ footer {
   box-shadow: 0 0 0 1px #11998e;
   text-rendering: optimizelegibility;
   border: 0 !important;
+}
+
+.error {
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.success {
+  color: lime;
 }
